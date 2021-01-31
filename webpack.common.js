@@ -8,6 +8,7 @@ const pathToIndexHtml = require.resolve("./src/index.html");
 const pathToIndexLogin = require.resolve("./src/img/logo.png");
 const pathToIndexLogo = require.resolve("./src/img/login.png");
 const pathToHomeNordeste = require.resolve("./src/img/nordeste.jpg");
+const pathToIndexSignUp = require.resolve("./src/img/signup.png");
 
 module.exports =  {
   entry: [
@@ -18,6 +19,7 @@ module.exports =  {
     pathToIndexLogin,
     pathToIndexLogo,
     pathToHomeNordeste,
+    pathToIndexSignUp
    
   ],
   plugins: [
