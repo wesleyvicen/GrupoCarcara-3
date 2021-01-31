@@ -1,12 +1,21 @@
 let Footer = {
     render : async () => {
-        let view = `
+
+        
+        let viewHome = `
+        <footer class="my-5 pt-3 text-muted text-center text-small">
+            <p>© Copyrigth 2021 - Arte: <a href="https://www.instagram.com/andersoneliasarts/">@andersoneliasarts</a></p>
+        </footer>         
+        `
+        let viewDefault = `
         <footer class="my-5 pt-3 text-muted text-center text-small">
             <p>© Copyrigth 2021</p>
         </footer> 
         `
-
-        return view;
+        if(window.location.hash == ""){
+            return viewHome;
+        }
+        return viewDefault;
     },
     after_render : async () => {}
 }
