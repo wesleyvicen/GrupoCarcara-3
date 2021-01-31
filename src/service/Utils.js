@@ -61,6 +61,29 @@ const Utils = {
     fazerLogout: () => {
         clearAuth();
         window.location.replace("#/Login")
+    },
+
+    // função para chamar toda vez que um tecla é pressionada do teclado
+    fMasc: (objeto, mascara) => {
+        obj = objeto;
+        masc = mascara;
+        // configura time out para chamar a função 
+        // que determina o tipo de máscara de acordo com o objeto passado
+        setTimeout("fMascEx()",1);
+    },
+
+    // função que trata a máscara de acordo com o tipo de entrada
+    fMascEx: () => {
+        obj.value = masc(obj.value);
+    },
+
+    // função que mascara o cpf através de RegEx
+    mCPF: (cpf) => {
+        cpf = cpf.replace(/\D/g,"");
+        cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
+        cpf = cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
+        return cpf;
     }
 
 }

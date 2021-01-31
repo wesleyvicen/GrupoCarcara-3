@@ -1,57 +1,5 @@
 import baseURL from '../../service/baseURL.js';
-
-function loader(mostrar){
-    if(mostrar){
-        if(!document.getElementById("modalLoader")){
-            let corpo = document.getElementsByTagName("body")[0];
-            let modalLoader = `
-                <div class="modal fade" id="modalLoader" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-sm ">
-                        <div class="modal-content">
-                            <div class="modal-header modalLoaderHeader">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Carregando...</h5>                                                               
-                            </div>
-                            <div class="modal-body centralizado">
-                                <div class="spinner-border" role="status">                            
-                                </div>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>`;
-            corpo.innerHTML += modalLoader;
-        }        
-        $("#modalLoader").modal("show");
-    }    
-    else{
-        setTimeout(()=>{
-            $("#modalLoader").modal("hide");        
-        },200)        
-    }
-}
-
-// função para chamar toda vez que um tecla é pressionada do teclado
-function fMasc (objeto,mascara) {
-    obj = objeto;
-    masc = mascara;
-    // configura time out para chamar a função 
-    // que determina o tipo de máscara de acordo com o objeto passado
-    setTimeout("fMascEx()",1);
-}
-
-// função que trata a máscara de acordo com o tipo de entrada
-function fMascEx () {
-    obj.value = masc(obj.value);
-}
-
-// função que mascara o cpf através de RegEx
-function mCPF (cpf) {
-    cpf = cpf.replace(/\D/g,"");
-    cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d)/,"$1.$2");
-    cpf = cpf.replace(/(\d{3})(\d{1,2})$/,"$1-$2");
-    return cpf;
-}
-
+import Utils from '../../service/Utils.js';
 
 let SignUp = {
     render :async () => {
@@ -81,8 +29,7 @@ let SignUp = {
                                 </div>
                                 <div class="form-group">
                                     <label for="cpf">CPF</label>
-                                    <input type="text" id="cpf" class="form-control  mb-4"
-                                        onkeydown="javascript: fMasc( this, mCPF );">
+                                    <input type="text" id="cpf" class="form-control  mb-4">
                                 </div>
                                 <div class=" form-group">
                                     <label for="email">E-mail</label>
@@ -108,6 +55,8 @@ let SignUp = {
         return view;
     },
     after_render :async () => {
+
+        document.getElementById('cpf').addEventListener('keydown', Utils.fMas(this, Ultis.mCPF));
         
         // configura um listener para ouvir o clique do boão 'cadastrar' da página
         document.getElementById('submit_new_register').addEventListener('click', () => {
@@ -122,7 +71,7 @@ let SignUp = {
             // dados para o backend
             if (userPassword === userRepassword) {
                 // carrega o loader para dentro da página
-                loader(true);
+                Utils.loader(true);
                 // realiza um post através do axios passando os dados de cadastro
                 axios.post(`${baseURL}usuarios`, {
                     cpf: userCpf,
@@ -138,7 +87,7 @@ let SignUp = {
                     // caro a resposta seja OK (200)
                     if (res.status === 200) {
                         // finaliza o loader
-                        loader(false);
+                        Utils.loader(false);
                         console.log('Status: ', res.status);
                         // redireciona o usuário para a página de login
                         window.location.replace('#/login');
@@ -150,7 +99,7 @@ let SignUp = {
                     console.log('Response: ', res);
                     console.log('Response.data: ', res.data);
                     alert(`Não foi possível finalizar cadastro: ${msg}. `);
-                    loader(false);
+                    Utils.loader(false);
                 });
             } else {
                 alert('As senhas não correspondem. Confira os dados digitados!');
