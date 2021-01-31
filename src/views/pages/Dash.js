@@ -327,7 +327,7 @@ window.realizarOperacao = () =>{
         "planoConta": Number(tipoOperacao),
         "valor": Number(valor)
       };
-        DashBoardService.realizarLancamento()
+        DashBoardService.realizarLancamento(body)
           .then((res) => {
               document.getElementById("descricaoOperacao").value = "";
               document.getElementById("valorOperacao").value = "";
@@ -385,7 +385,7 @@ window.realizarTransferencia = () =>{
         "planoConta": 28,
         "valor": Number(valor)
       };
-      DashBoardService.realizarLancamento()
+      DashBoardService.realizarLancamento(body)
           .then((res) => {                
               document.getElementById("descricaoTransferencia").value = "";
               document.getElementById("valorTransferencia").value = "";
