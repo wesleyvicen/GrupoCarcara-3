@@ -58,10 +58,6 @@ const Utils = {
         return dinheiro;
     },
     
-    fazerLogout: () => {
-        clearAuth();
-        window.location.replace("#/Login")
-    },
 
     // função para chamar toda vez que um tecla é pressionada do teclado
     fMasc: function (objeto) {

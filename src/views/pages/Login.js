@@ -55,7 +55,7 @@ let Login = {
                         senha: senha
                   }).then( res => {
                         if (res.status == 200 ){
-                              Utils.loader(false);
+                            Utils.loader(false);
                               /*
                               Por falta de recursos da API, não é possível realmente implementar a funcionalidade
                               de manter a conexão, pois o token possui uma validade limitada e não há como 
@@ -65,10 +65,12 @@ let Login = {
                             //        localStorage.setItem('@token', res.data.token)
                             //        localStorage.setItem('userDataAccount', JSON.stringify(res.data))
                             //   }else{
-                            //         sessionStorage.setItem('@token', res.data.token)
-                            //         sessionStorage.setItem('userDataAccount', JSON.stringify(res.data))
-                            //   }
-                              window.location.replace('#/dashboard')
+                                //         sessionStorage.setItem('@token', res.data.token)
+                                //         sessionStorage.setItem('userDataAccount', JSON.stringify(res.data))
+                                //   }
+                            localStorage.setItem('@token', res.data.token)
+                            localStorage.setItem('userDataAccount', JSON.stringify(res.data))
+                            window.location.replace('#/dashboard')
                         }
                         
                         

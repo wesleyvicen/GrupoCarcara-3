@@ -1,5 +1,4 @@
-import AuthService from "../../service/Auth.js";
-import Utils from "../../service/Utils.js";
+import AuthService from '../../service/Auth.js';
 
 let Nav = {
       render : async () => {
@@ -48,7 +47,7 @@ let Nav = {
                                           </ul>
                                     <div class="d-flex flex-row-reverse bd-highlight">
                                           <div class="p-2 bd-highlight">
-                                                <button id="destroy_session" onclick="" type="button" class="btn btn-secondary" >
+                                                <button id="destroy_session" type="button" class="btn btn-secondary" >
                                                       Sair
                                                 </button>
                                           </div>                                
@@ -63,12 +62,14 @@ let Nav = {
             return view;
       },
 
-      after_render : async () => {                  
-            if(document.getElementById('destroy_session')){
+      after_render : async () => {     
+            let IsAuth = localStorage.getItem('@token') 
+            if(IsAuth){
                   document.getElementById('destroy_session').addEventListener('click', function(){
-                        Utils.fazerLogout();
+                        localStorage.clear()
+                        window.location.replace('#/login')
                   })
-            }                  
+            }                
       }
 }
 
