@@ -230,27 +230,24 @@ let Dash = {
         mudouTipoOperacao();
       });
     })    
-    if(!Auth.getAuthToken()){        
-        after_render();
-    }
-    else{
-        let dataAtual = new Date(),
-        dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
-        dataInicio = dataAux;
-        dataFim = dataAux;
-        
-        let params = {
+    
+    let dataAtual = new Date(),
+    dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
+    dataInicio = dataAux;
+    dataFim = dataAux;
+    
+    let params = {
 
-        dataInicio: dataAux,
-        dataFim: dataAux,
-        login: Auth.getAuthLogin(),
-        token: Auth.getAuthToken()
-        }
-        atualizarDados(params);
-        
-        let nomeUsuario = Auth.getAuthNomeUsuario();
-        document.getElementById("mensagemTitulo").innerHTML = "Bem-vindo, " + nomeUsuario + "!";
+    dataInicio: dataAux,
+    dataFim: dataAux,
+    login: Auth.getAuthLogin(),
+    token: Auth.getAuthToken()
     }
+    atualizarDados(params);
+    
+    let nomeUsuario = Auth.getAuthNomeUsuario();
+    document.getElementById("mensagemTitulo").innerHTML = "Bem-vindo, " + nomeUsuario + "!";
+    
     
   }
 }
