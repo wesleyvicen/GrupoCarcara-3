@@ -32,7 +32,7 @@ let Login = {
                                     <input type="button" value="Entrar" id="submit_login" class="btn btn-warning w-100 my-1">
                                 </div>
                                 <div class="col-md-12 col-lg-6">
-                                    <button id="submit_new_register" type='button' class="btn btn-warning w-100 my-1">Cadastrar</button>
+                                    <a href="#/signup" id="new_register" class="btn btn-warning w-100 my-1">Cadastrar</a>
                                 </div>
                             </div>
                         </form>
