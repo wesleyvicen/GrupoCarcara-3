@@ -1,8 +1,10 @@
 import baseURL from '../../service/baseURL.js';
+import auth from '../../service/IsAuth.js';
 import Utils from '../../service/Utils.js';
 
 let SignUp = {
     render :async () => {
+        let IsAuth = await auth(true, 'dashboard');
         let view = `
         <div class="container">
             <div class="content bg-color--yellow content-border--rounded">

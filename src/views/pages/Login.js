@@ -1,9 +1,10 @@
 import baseURL from '../../service/baseURL.js';
+import auth from '../../service/IsAuth.js';
 import Utils from '../../service/Utils.js';
 
 let Login = {
     render : async () => {
- 
+        let IsAuth = await auth(true, 'dashboard');
         let view = `
         <div class="container">
             <div class="row mt-5 mb-5">
