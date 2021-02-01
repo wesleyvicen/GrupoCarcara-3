@@ -232,10 +232,8 @@ let Dash = {
         mudouTipoOperacao();
       });
     })    
-    if(!Auth.getAuthToken()){        
-        after_render();
-    }
-    else{
+    if(!Auth.getAuthToken()){  
+    }else{
         let dataAtual = new Date(),
         dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
         dataInicio = dataAux;

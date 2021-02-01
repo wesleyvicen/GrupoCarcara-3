@@ -34,8 +34,8 @@ let SignUp = {
                                     <input type="text" id="cpf" class="form-control  mb-4">
                                 </div>
                                 <div class=" form-group">
-                                    <label for="email">E-mail</label>
-                                    <input type="email" id="email" class="form-control  mb-4">
+                                    <label for="user">Usuário</label>
+                                    <input type="text" id="user" class="form-control  mb-4">
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Senha</label>
@@ -67,7 +67,7 @@ let SignUp = {
             // carrega os valores dos campos do formulário para dentro do script
             let userName = document.getElementById('username').value,
                 userCpf = document.getElementById('cpf').value.replace(/[^\d]/g, ""),
-                userEmail = document.getElementById('email').value,
+                userLogin = document.getElementById('user').value,
                 userPassword = document.getElementById('password').value,
                 userRepassword = document.getElementById('re_password').value;
             
@@ -79,7 +79,7 @@ let SignUp = {
                 // realiza um post através do axios passando os dados de cadastro
                 axios.post(`${baseURL}usuarios`, {
                     cpf: userCpf,
-                    login: userEmail,
+                    login: userLogin,
                     nome: userName,
                     senha: userPassword
                 },
