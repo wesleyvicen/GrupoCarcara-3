@@ -230,23 +230,28 @@ let Dash = {
         mudouTipoOperacao();
       });
     })    
-    
-    let dataAtual = new Date(),
-    dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
-    dataInicio = dataAux;
-    dataFim = dataAux;
-    
-    let params = {
-
-      dataInicio: dataAux,
-      dataFim: dataAux,
-      login: Auth.getAuthLogin(),
-      token: Auth.getAuthToken()
+    if(!Auth.getAuthToken()){        
+        after_render();
     }
-    atualizarDados(params);
+    else{
+        let dataAtual = new Date(),
+        dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
+        dataInicio = dataAux;
+        dataFim = dataAux;
+        
+        let params = {
+
+        dataInicio: dataAux,
+        dataFim: dataAux,
+        login: Auth.getAuthLogin(),
+        token: Auth.getAuthToken()
+        }
+        atualizarDados(params);
+        
+        let nomeUsuario = Auth.getAuthNomeUsuario();
+        document.getElementById("mensagemTitulo").innerHTML = "Bem-vindo, " + nomeUsuario + "!";
+    }
     
-    let nomeUsuario = Auth.getAuthNomeUsuario();
-    document.getElementById("mensagemTitulo").innerHTML = "Bem-vindo, " + nomeUsuario + "!";
   }
 }
 
@@ -426,7 +431,7 @@ window.salvarFiltro = () =>{
 
 
 window.atualizarDados = (params) =>{
-  Utils.loader(true);
+  Utils.loader(true);    
   DashBoardService.recuperarDadosDashboard(params)
     .then((res) => {
         montarPagina(res.data);            
