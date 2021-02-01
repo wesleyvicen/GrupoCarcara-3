@@ -230,7 +230,7 @@ let Dash = {
         mudouTipoOperacao();
       });
     })    
-    if(!Auth.getAuthToken){
+    if(!Auth.getAuthToken()){        
         after_render();
     }
     else{
