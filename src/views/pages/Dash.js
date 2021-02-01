@@ -230,8 +230,10 @@ let Dash = {
         mudouTipoOperacao();
       });
     })    
-    //Necessário para ter certeza de que o token foi carregado na session
-    setInterval(() => {
+    if(!Auth.getAuthToken){
+        after_render();
+    }
+    else{
         let dataAtual = new Date(),
         dataAux = dataAtual.getFullYear().toString() + "-" + ((dataAtual.getMonth() + 1).toString().length == 1 ? "0" + (dataAtual.getMonth() + 1).toString() : (dataAtual.getMonth() + 1).toString()) + "-" + (dataAtual.getDate().toString().length == 1 ? "0" + dataAtual.getDate().toString() : dataAtual.getDate().toString());
         dataInicio = dataAux;
@@ -248,7 +250,7 @@ let Dash = {
         
         let nomeUsuario = Auth.getAuthNomeUsuario();
         document.getElementById("mensagemTitulo").innerHTML = "Bem-vindo, " + nomeUsuario + "!";
-    }, 1000);
+    }
     
   }
 }
