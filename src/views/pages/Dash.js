@@ -1,6 +1,7 @@
-import Utils from "../../service/Utils.js";
-import Auth from "../../service/Auth.js";
-import DashBoardService from "../../service/DashboardService.js";
+import Auth from '../../service/Auth.js';
+import DashBoardService from '../../service/DashboardService.js';
+import IsAuthenticated from '../../service/IsAuth.js';
+import Utils from '../../service/Utils.js';
 
 var dataInicio = "";
 var dataFim = "";
@@ -8,6 +9,7 @@ var tipoMovimentacao = "3";
 
 let Dash = {
   render: async () => {
+    let IsAuth = await IsAuthenticated(false, 'login');
     let view = `
       <div class="titulo">
           <h2 id="mensagemTitulo">
